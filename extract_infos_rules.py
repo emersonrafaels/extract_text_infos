@@ -3,6 +3,7 @@ from inspect import stack
 from dynaconf import settings
 
 from UTILS.check_similarity import Check_Similarity
+from  UTILS.generic_functions import drop_duplicates_list
 
 
 class Extract_Infos():
@@ -31,7 +32,70 @@ class Extract_Infos():
         self.limit_result_best_similar = settings.DEFAULT_LIMIT_RESULT_BEST_SIMILAR
 
 
+
+    def get_values(self, data, field):
+
+        """
+
+            DADO UM CAMPO
+            OBTÉM OS VALORES PRESENTES NO DOCUMENTO
+
+            PARA OBTER OS VALORES, REALIZA A RECUPERAÇÃO
+            DAS NFORMAÇÕES CONTIDAS NOS MATCHS JÁ OBTIDOS.
+
+            # Arguments
+                data                  - Required : Dados dos matchs (Dict)
+
+            # Returns
+                list_result           - Required : Resultado contendo a lista de valores (List)
+
+        """
+
+        # INICIANDO A VARIÁVEL QUE ARMAZENARÁ TODOS OS VALORES CONTIDOS NO TEXTO
+        list_result = []
+
+        try:
+            list_result = [value[3] for value in data[field][0]]
+
+            # RETIRANDO DULICIDADES DA LIST RESULT
+            list_result = drop_duplicates_list(list_result)
+
+        except Exception as ex:
+            print("ERRO NA FUNÇÃO {} - {}".format(stack()[0][3], ex))
+
+        return list_result
+
+
     def decorator_valid_similarity(func):
+
+        """
+
+            ORQUESTRA A CHAMADA DA FUNÇÃO DE CÁLCULO DE SIMILARIDADE ITEM A ITEM.
+
+            # Arguments
+                search                     - Required : Palavra a ser comparada
+                                                        ou utilizada como base para obter
+                                                        as similaridades
+                                                        dentre as possibilidades (String)
+
+                list_choices               - Required : Palavra ser comparada com a query ou a lista
+                                                        de palavras a serem comparadas
+                                                        com a query (String | List)
+
+                percent_match              - Required : Somente serão retornados
+                                                        os itens acima do
+                                                        percentual de match (Integer)
+
+                pre_processing             - Optional : Definindo se deve haver
+                                                        pré processamento (Boolean)
+
+                limit                      - Optional : Limite de resultados
+                                                        de similaridade (Integer)
+
+            # Returns
+                percentual_similarity      - Required : Percentual de similaridade (String | List)
+
+        """
 
         def valid_value_similarity(self, search, list_choices, percent_match, pre_processing, limit):
 

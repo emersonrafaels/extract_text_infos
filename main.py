@@ -2,6 +2,7 @@ import json
 
 from extract_infos_rules import Extract_Infos
 
+
 value = "Emerson V. Rafael"
 choices_list = ["Emerson rafael", "Emerson Rafael", "Cleber de Castro", "emersona7x@hotmail.com"]
 choices_str = "Emerson rafael"
