@@ -97,6 +97,7 @@ class Extract_Infos():
 
         """
 
+
         def valid_value_similarity(self, search, list_choices, percent_match, pre_processing, limit):
 
             # INICIANDO A VARIÁVEL QUE ARMAZENARÁ O RESULTADO DE SIMILARIDADES
