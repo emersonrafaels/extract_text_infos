@@ -36,11 +36,11 @@
                                                 de palavras a serem comparadas
                                                 com a query (Str | List)
 
-        pre_processing              - Optional : Definindo se deve haver
+        pre_processing             - Optional : Definindo se deve haver
                                                  pré processamento (Boolean)
 
     # Returns
-        percentual_similarity       - Required : Percentual de similaridade (String | List)
+        percentual_similarity      - Required : Percentual de similaridade (String | List)
 
 """
 
@@ -98,11 +98,14 @@ class Check_Similarity():
                                                         de palavras a serem comparadas
                                                         com a query (String | List)
 
-                pre_processing              - Optional : Definindo se deve haver
-                                                         pré processamento (Boolean)
+                pre_processing             - Optional : Definindo se deve haver
+                                                        pré processamento (Boolean)
+
+                limit                      - Optional : Limite de resultados
+                                                        de similaridade (Integer)
 
             # Returns
-                percentual_similarity       - Required : Percentual de similaridade (String | List)
+                percentual_similarity      - Required : Percentual de similaridade (String | List)
 
         """
 
@@ -147,7 +150,8 @@ class Check_Similarity():
 
     @staticmethod
     @validate_arguments
-    def get_values_similarity(query: str, choices: Union[str, list], pre_processing=False):
+    def get_values_similarity(query: str, choices: Union[str, list],
+                              pre_processing=False, limit=5):
 
         """
 
@@ -167,11 +171,14 @@ class Check_Similarity():
                                                         de palavras a serem comparadas
                                                         com a query (String | List)
 
-                pre_processing              - Optional : Definindo se deve haver
-                                                         pré processamento (Boolean)
+                pre_processing             - Optional : Definindo se deve haver
+                                                        pré processamento (Boolean)
+
+                limit                      - Optional : Limite de resultados
+                                                        de similaridade (Integer)
 
             # Returns
-                percentual_similarity       - Required : Percentual de similaridade (String | List)
+                percentual_similarity      - Required : Percentual de similaridade (String | List)
 
         """
 
@@ -186,11 +193,12 @@ class Check_Similarity():
 
         # RETORNANDO A LISTA DE TUPLAS
         #(VALUE, PERCENTUAL_SIMILARIDADE)
-        return process.extract(query, choices)
+        return process.extract(query=query, choices=choices, limit=limit)
 
 
     @staticmethod
-    def get_value_max_similarity(query: str, choices: Union[str, list], pre_processing=False):
+    def get_value_max_similarity(query: str, choices: Union[str, list],
+                                 pre_processing=False, limit=5):
 
         """
 
@@ -212,11 +220,14 @@ class Check_Similarity():
                                                         de palavras a serem comparadas
                                                         com a query (String | List)
 
-                pre_processing              - Optional : Definindo se deve haver
-                                                         pré processamento (Boolean)
+                pre_processing             - Optional : Definindo se deve haver
+                                                        pré processamento (Boolean)
+
+                limit                      - Optional : Limite de resultados
+                                                        de similaridade (Integer)
 
             # Returns
-                percentual_similarity       - Required : Percentual de similaridade (String | List)
+                percentual_similarity      - Required : Percentual de similaridade (String | List)
 
         """
 
@@ -230,4 +241,4 @@ class Check_Similarity():
 
         # RETORNANDO A LISTA DE TUPLAS DE ÚNICO VALOR COM MÁXIMA SIMILARIDADE
         # (VALUE, PERCENTUAL_SIMILARIDADE)
-        return process.extractOne(query, choices)
+        return process.extractOne(query=query, choices=choices, limit=limit)
