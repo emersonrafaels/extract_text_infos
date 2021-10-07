@@ -51,7 +51,7 @@ __data_atualizacao__ = "06/10/2021"
 
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
-from typing import List
+from typing import Union
 from pydantic import validate_arguments
 
 
@@ -146,7 +146,8 @@ class Check_Similarity():
 
 
     @staticmethod
-    def get_values_similarity(query: str, choices: [str, list], pre_processing=False):
+    @validate_arguments
+    def get_values_similarity(query: str, choices: Union[str, list], pre_processing=False):
 
         """
 
@@ -189,7 +190,7 @@ class Check_Similarity():
 
 
     @staticmethod
-    def get_value_max_similarity(query: str, choices: [str, list], pre_processing=False):
+    def get_value_max_similarity(query: str, choices: Union[str, list], pre_processing=False):
 
         """
 
