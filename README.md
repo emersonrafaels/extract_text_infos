@@ -75,14 +75,16 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 Ex: JSON Input:
 
-    from main_extract_infos import Execute_Extract_Infos
-    
-    # DEFININDO O JSON DE INPUT  
-	json_input = {}
+```python
+from main_extract_infos import Execute_Extract_Infos
 
-	# EXECUTANDO A CHAMADA DO SERVIÇO
-	model = Execute_Extract_Infos(json_input)
-	result = model.orchestra_extract()
+# DEFININDO O JSON DE INPUT  
+json_input = {}
+
+# EXECUTANDO A CHAMADA DO SERVIÇO
+model = Execute_Extract_Infos(json_input)
+result = model.orchestra_extract()
+```
 
 
 ## ➊ Pré-requisitos
